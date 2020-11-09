@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import TRACKER
+from bot.utils import TRACKER
 
 class InviteTracking(commands.Cog):
     def __init__(self, bot):

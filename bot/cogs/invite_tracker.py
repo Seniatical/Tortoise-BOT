@@ -9,7 +9,6 @@ class InviteTracking(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('I am loaded')
         await self.track.ALL_INVITES()
 
     @commands.Cog.listener()
@@ -27,11 +26,20 @@ class InviteTracking(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
         await self.track.REMOVE_INVITES(guild)
+        
+    '''
+    Everything above do not change.
+    It will automatically Add and remove invites when there events are triggered
+    Just change the event below to match your API
+    '''
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        inviter = await self.track.GET_INVITER(member)
-        invter = inviter.id
+        inviter = await self.track.GET_INVITER(member).id  # Returns the inviters ID
+        '''
+        You can do all your stuff below here now.
+        the variable inviter has the ID as opposed to there name + discriminator 
+        '''
 
 def setup(bot):
     bot.add_cog(InviteTracking(bot))
